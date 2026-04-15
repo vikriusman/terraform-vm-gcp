@@ -55,5 +55,29 @@ Project ini membuat beberapa komponen infrastruktur di GCP:
    terraform destroy -var="project_id=YOUR_PROJECT_ID"
    ```
 
-## Catatan
-Akses awal via SSH ke dalam node dapat dilakukan melalui Google Cloud Console atau lewat `gcloud CLI` setelah VM tersebut statusnya *Running*.
+## Hak Akses & SSH ke VM
+
+Terraform akan menanamkan (*inject*) daftar *public-key* SSH secara otomatis ke dalam *metadata* VM saat instalasi. Ini memungkinkan Anda untuk login ke VM menggunakan klien SSH biasa.
+
+Anda dapat mendeklarasikan lebih dari satu akses *user* via variabel array (*list of objects*) `ssh_keys` di `variable.tf` atau `.tfvars`:
+
+```hcl
+ssh_keys = [
+    {
+      user         = "devops"
+      pub_key_file = "~/id.pub"
+    },
+    {
+      user         = "vikri"
+      pub_key_file = "~/.ssh/id_rsa.pub"
+    }
+]
+```
+
+Setelah `terraform apply` berhasil dan Anda mendapatkan **Public IP** dari VM tersebut, login dengan klien SSH:
+
+```bash
+ssh devops@<IP_PUBLIC_VM>
+```
+
+*(Atau via Google Cloud Console / gcloud CLI jika diperlukan).*

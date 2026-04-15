@@ -39,7 +39,8 @@ resource "google_compute_instance" "vm_ubuntu" {
   }
 
   metadata = {
-    ssh-keys = "${var.ssh_user}:${file(var.ssh_pub_key_file)}"
+    # GCP meminta format string multi-line untuk multiple SSH key, kita gabungkan (join) array-nya dengan baris baru (\n)
+    ssh-keys = join("\n", [for key in var.ssh_keys : "${key.user}:${file(key.pub_key_file)}"])
   }
 }
 

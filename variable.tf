@@ -8,14 +8,16 @@ variable "vm_name" {
   default = "vm-created-by-teraform"
 }
 
-variable "ssh_user" {
-  description = "Username untuk login SSH"
-  type        = string
-  default     = "devops"
-}
-
-variable "ssh_pub_key_file" {
-  description = "Path ke file public key untuk SSH"
-  type        = string
-  default     = "~/id.pub"
+variable "ssh_keys" {
+  description = "Daftar SSH Keys yang akan didaftarkan (berisi user dan path ke file public key)"
+  type = list(object({
+    user         = string
+    pub_key_file = string
+  }))
+  default = [
+    {
+      user         = "devops"
+      pub_key_file = "~/id.pub"
+    }
+  ]
 }
