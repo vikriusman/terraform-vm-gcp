@@ -15,6 +15,7 @@ resource "google_compute_instance" "vm_ubuntu" {
   machine_type = "e2-custom-2-4096" 
   
   zone         = "asia-southeast2-a"
+  allow_stopping_for_update = true
 
   # Menggunakan Tag agar bisa kena aturan Firewall port 8080 dari network.tf
   tags = ["web-server-port"]
