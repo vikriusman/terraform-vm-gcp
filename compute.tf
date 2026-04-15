@@ -21,6 +21,7 @@ resource "google_compute_instance" "vm_ubuntu" {
   tags = ["web-server-port"]
 
   boot_disk {
+    auto_delete = false
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2404-lts-amd64"
       size  = 30 # Disk OS 30GB
