@@ -37,6 +37,10 @@ resource "google_compute_instance" "vm_ubuntu" {
     environment = "experimental"
     os          = "ubuntu-24-04"
   }
+
+  metadata = {
+    ssh-keys = "${var.ssh_user}:${file(var.ssh_pub_key_file)}"
+  }
 }
 
 # 3. Menempelkan Disk Tambahan ke VM
