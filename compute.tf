@@ -6,6 +6,7 @@ resource "google_compute_disk" "disk_data" {
   size  = 50                     # Ukuran dalam GB
 }
 
+
 # 2. Definisi VM Instance
 resource "google_compute_instance" "vm_ubuntu" {
   name         = "ubuntu-custom-server"
@@ -21,11 +22,8 @@ resource "google_compute_instance" "vm_ubuntu" {
   tags = ["web-server-port"]
 
   boot_disk {
+    source      = google_compute_disk.boot_disk.id
     auto_delete = false
-    initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-2404-lts-amd64"
-      size  = 30 # Disk OS 30GB
-    }
   }
 
   network_interface {
