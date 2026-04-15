@@ -27,7 +27,8 @@ resource "google_compute_instance" "vm_ubuntu" {
   }
 
   network_interface {
-    network = "default"
+    network    = google_compute_network.custom_vpc.id
+    subnetwork = google_compute_subnetwork.custom_subnet.id
     access_config {
       # Kosongkan untuk mendapatkan Public IP
     }
