@@ -1,0 +1,15 @@
+# 1. Folder Plugin (Sangat besar)
+.terraform/
+
+# 2. File State (SANGAT BERBAHAYA)
+*.tfstate
+*.tfstate.backup
+
+# 3. Variabel Rahasia
+*.tfvars
+*.tfvars.json
+terraform.tfvars
+
+# 4. File Log & Crash
+*.log
+crash.log
