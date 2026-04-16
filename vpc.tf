@@ -7,7 +7,7 @@ resource "google_compute_network" "vm_vpc" {
 # 2. Definisi Custom Subnetwork
 resource "google_compute_subnetwork" "vm_subnet" {
   name          = "vm-subnet-sea"
-  ip_cidr_range = "10.0.1.0/24"
+  ip_cidr_range = "10.10.0.0/24"
   region        = "asia-southeast2"
   network       = google_compute_network.vm_vpc.id
 }

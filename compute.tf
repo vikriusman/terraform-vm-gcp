@@ -9,7 +9,7 @@ resource "google_compute_disk" "disk_data" {
 
 # 2. Definisi VM Instance
 resource "google_compute_instance" "vm_ubuntu" {
-  name         = "ubuntu-custom-server"
+  name         = "ansible-main-server"
   
   # FORMAT CUSTOM: custom-VCPU-MEMORYMB
   # Contoh: 2 vCPU dan 4GB RAM (4 * 1024 = 4096)
