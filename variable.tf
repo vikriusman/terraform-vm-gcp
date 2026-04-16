@@ -16,8 +16,8 @@ variable "ssh_keys" {
   }))
   default = [
     {
-      user         = "devops"
-      pub_key_file = "~/id.pub"
+      user         = "vikri"
+      pub_key_file = "/home/vikri/.ssh/id_ed25519.pub"
     }
   ]
 }

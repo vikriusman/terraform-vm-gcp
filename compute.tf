@@ -27,8 +27,8 @@ resource "google_compute_instance" "vm_ubuntu" {
   }
 
   network_interface {
-    network    = google_compute_network.custom_vpc.id
-    subnetwork = google_compute_subnetwork.custom_subnet.id
+    network    = google_compute_network.vm_vpc.id
+    subnetwork = google_compute_subnetwork.vm_subnet.id
     access_config {
       # Kosongkan untuk mendapatkan Public IP
     }
@@ -43,6 +43,12 @@ resource "google_compute_instance" "vm_ubuntu" {
     # GCP meminta format string multi-line untuk multiple SSH key, kita gabungkan (join) array-nya dengan baris baru (\n)
     ssh-keys = join("\n", [for key in var.ssh_keys : "${key.user}:${file(key.pub_key_file)}"])
   }
+
+  lifecycle {
+    ignore_changes = [attached_disk]
+  }
+
+
 }
 
 # 3. Menempelkan Disk Tambahan ke VM

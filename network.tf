@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "allow_8080" {
   name    = "allow-port-8080"
-  network = google_compute_network.custom_vpc.name
+  network = google_compute_network.vm_vpc.name
 
   allow {
     protocol = "tcp"
@@ -13,7 +13,7 @@ resource "google_compute_firewall" "allow_8080" {
 
 resource "google_compute_firewall" "allow_ssh" {
   name    = "allow-ssh-custom"
-  network = google_compute_network.custom_vpc.name
+  network = google_compute_network.vm_vpc.name
 
   allow {
     protocol = "tcp"
