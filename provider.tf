@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "terra-test" # Ganti dengan nama bucket GCS Anda
+    bucket  = "terrav-test" # Ganti dengan nama bucket GCS Anda
     prefix  = "terraform/state"
   }
 }
